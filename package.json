@@ -1,0 +1,12 @@
+{
+  "name": "curlf",
+  "version": "1.0.0-alpha.1",
+  "bin": "./bin/curlf",
+  "dependencies": {
+    "axios": "0.19.2"
+  },
+  "files": [
+    "src",
+    "bin"
+  ]
+}
