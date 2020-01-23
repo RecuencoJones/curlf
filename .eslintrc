@@ -1,0 +1,11 @@
+{
+  "extends": [
+    "adidas-env/node",
+    "adidas-es9"
+  ],
+  "rules": {
+    "function-paren-newline": "off",
+    "no-console": "off",
+    "no-magic-numbers": "off"
+  }
+}

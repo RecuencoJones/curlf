@@ -16,9 +16,13 @@ const DEFAULT_LEVEL = 3;
 
 let currentLevel = DEFAULT_LEVEL;
 
-const setLevel = (level) => { currentLevel = levels[`${ level }`.toUpperCase()] || DEFAULT_LEVEL; };
+function setLevel(level) {
+  currentLevel = levels[`${ level }`.toUpperCase()] || DEFAULT_LEVEL;
+}
 
-const log = (level, ...args) => { level <= currentLevel && console.log(...args); };
+function log(level, ...args) {
+  level <= currentLevel && console.log(...args);
+}
 
 const verbose = (...args) => log(levels.VERBOSE, ...args);
 

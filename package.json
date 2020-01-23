@@ -3,6 +3,7 @@
   "version": "1.0.0-alpha.1",
   "bin": "./bin/curlf",
   "scripts": {
+    "lint": "eslint .",
     "test": "jest"
   },
   "dependencies": {
@@ -15,6 +16,7 @@
     "bin"
   ],
   "devDependencies": {
+    "build-tools-javascript": "1.2.0",
     "dedent": "0.7.0",
     "jest": "25.1.0"
   }

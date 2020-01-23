@@ -3,7 +3,7 @@ const { parse } = require('../../../src/core/parser');
 
 describe('Curlf parser', () => {
   it('should parse file with just url', () => {
-    const result = parse(dedent`
+    const result = parse(dedent `
       https://foo.com
     `);
 
@@ -14,7 +14,7 @@ describe('Curlf parser', () => {
   });
 
   it('should parse file with method and url', () => {
-    const result = parse(dedent`
+    const result = parse(dedent `
       GET https://foo.com
     `);
 
@@ -25,7 +25,7 @@ describe('Curlf parser', () => {
   });
 
   it('should parse file with protocol, method and url', () => {
-    const result = parse(dedent`
+    const result = parse(dedent `
       HTTP/1.1 GET https://foo.com
     `);
 
@@ -37,7 +37,7 @@ describe('Curlf parser', () => {
   });
 
   it('should parse file with method, url and headers', () => {
-    const result = parse(dedent`
+    const result = parse(dedent `
       GET https://foo.com
       Accept: application/json
       Authorization: Bearer token
@@ -54,7 +54,7 @@ describe('Curlf parser', () => {
   });
 
   it('should parse file with method, url and body', () => {
-    const result = parse(dedent`
+    const result = parse(dedent `
       GET https://foo.com
 
       Foo
@@ -68,7 +68,7 @@ describe('Curlf parser', () => {
   });
 
   it('should ignore trailing empty lines', () => {
-    const result = parse(dedent`
+    const result = parse(dedent `
 
       GET https://foo.com
 
@@ -82,7 +82,7 @@ describe('Curlf parser', () => {
   });
 
   it('should allow multiple lines between headers and body', () => {
-    const result = parse(dedent`
+    const result = parse(dedent `
       GET https://foo.com
 
 
@@ -98,7 +98,7 @@ describe('Curlf parser', () => {
   });
 
   it('should not remove multiple empty lines in body', () => {
-    const result = parse(dedent`
+    const result = parse(dedent `
       GET https://foo.com
 
 
@@ -117,7 +117,7 @@ describe('Curlf parser', () => {
   });
 
   it('should allow multiple spaces between protocol, method and url', () => {
-    const result = parse(dedent`
+    const result = parse(dedent `
       HTTP/1.1    GET      https://foo.com
     `);
 
@@ -129,7 +129,7 @@ describe('Curlf parser', () => {
   });
 
   it('should allow multiple spaces between header keys and values', () => {
-    const result = parse(dedent`
+    const result = parse(dedent `
       GET https://foo.com
       Accept    :   application/json
     `);
@@ -137,9 +137,7 @@ describe('Curlf parser', () => {
     expect(result).toMatchObject({
       method: 'GET',
       url: 'https://foo.com',
-      headers: new Map([
-        [ 'Accept', 'application/json' ]
-      ])
+      headers: new Map([[ 'Accept', 'application/json' ]])
     });
   });
 });

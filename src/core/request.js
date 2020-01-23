@@ -8,7 +8,7 @@ async function request({ method, url, headers, body }, flags) {
 
     curl.setOpt('CUSTOMREQUEST', method);
     curl.setOpt('URL', url);
-    curl.setOpt('FOLLOWLOCATION', flags.location)
+    curl.setOpt('FOLLOWLOCATION', flags.location);
 
     if (headers.size) {
       curl.setOpt(Curl.option.HTTPHEADER, fromMapToRawList(headers));
@@ -18,6 +18,8 @@ async function request({ method, url, headers, body }, flags) {
       curl.setOpt('POSTFIELDS', body);
     }
 
+    // Omit result from headers
+    // eslint-disable-next-line no-unused-vars
     curl.on('end', (statusCode, data, [{ result, ...headers }]) => {
       curl.close();
 
