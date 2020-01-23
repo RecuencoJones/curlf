@@ -2,11 +2,19 @@
   "name": "curlf",
   "version": "1.0.0-alpha.1",
   "bin": "./bin/curlf",
+  "scripts": {
+    "test": "jest"
+  },
   "dependencies": {
-    "axios": "0.19.2"
+    "axios": "0.19.2",
+    "yargs": "15.1.0"
   },
   "files": [
     "src",
     "bin"
-  ]
+  ],
+  "devDependencies": {
+    "dedent": "0.7.0",
+    "jest": "25.1.0"
+  }
 }
