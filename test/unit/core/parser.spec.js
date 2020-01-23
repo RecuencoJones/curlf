@@ -2,6 +2,17 @@ const dedent = require('dedent');
 const { parse } = require('../../../src/core/parser');
 
 describe('Curlf parser', () => {
+  it('should parse file with just url', () => {
+    const result = parse(dedent`
+      https://foo.com
+    `);
+
+    expect(result).toMatchObject({
+      method: 'GET',
+      url: 'https://foo.com'
+    });
+  });
+
   it('should parse file with method and url', () => {
     const result = parse(dedent`
       GET https://foo.com

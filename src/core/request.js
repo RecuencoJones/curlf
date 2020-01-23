@@ -1,23 +1,41 @@
-const axios = require('axios').default;
+const { Curl } = require('node-libcurl');
+const HttpStatus = require('http-status-codes');
+const { fromMapToRawList, fromObjectToMap } = require('../util/headers');
 
-async function request({ method, url, headers, body }) {
-  const response = await axios({
-    method,
-    url,
-    headers,
-    data: body,
-    responseType: 'arraybuffer'
+async function request({ method, url, headers, body }, flags) {
+  return new Promise((resolve, reject) => {
+    const curl = new Curl();
+
+    curl.setOpt('CUSTOMREQUEST', method);
+    curl.setOpt('URL', url);
+    curl.setOpt('FOLLOWLOCATION', flags.location)
+
+    if (headers.size) {
+      curl.setOpt(Curl.option.HTTPHEADER, fromMapToRawList(headers));
+    }
+
+    if (body) {
+      curl.setOpt('POSTFIELDS', body);
+    }
+
+    curl.on('end', (statusCode, data, [{ result, ...headers }]) => {
+      curl.close();
+
+      resolve({
+        statusCode,
+        statusText: HttpStatus.getStatusText(statusCode),
+        headers: fromObjectToMap(headers),
+        body: data
+      });
+    });
+    curl.on('error', (error) => {
+      curl.close();
+
+      reject(error);
+    });
+
+    curl.perform();
   });
-
-  const responseHeadersMap = new Map(Object.entries(response.headers));
-  const responseText = response.data && response.data.toString();
-
-  return {
-    statusCode: response.status,
-    statusText: response.statusText,
-    headers: responseHeadersMap,
-    body: responseText
-  };
 }
 
 module.exports = { request };

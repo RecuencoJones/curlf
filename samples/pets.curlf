@@ -1,2 +1,1 @@
-GET https://www.zaragoza.es/sede/servicio/mascotas
-Accept: application/json
+https://www.zaragoza.es/sede/servicio/mascotas

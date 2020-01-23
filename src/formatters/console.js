@@ -1,22 +1,29 @@
-const { setLevel, verbose, info, quiet, error } = require('../util/log');
+const { setLevel, verbose, quiet, error } = require('../util/log');
+const { fromMapToRawList } = require('../util/headers');
 
-function init() {
-  const logLevel = process.env.LOGLEVEL;
+const formatHeaders = (headers) => fromMapToRawList(headers).sort().join('\n');
+
+function init(flags) {
+  let logLevel = process.env.LOGLEVEL;
+
+  if (flags.verbose) {
+    logLevel = 'VERBOSE';
+  }
 
   logLevel && setLevel(logLevel);
 }
 
 function formatRequest({ protocol, method, url, headers, body }) {
-  protocol ? info(protocol, method, url) : info(method, url);
-  headers.size && verbose(headers);
+  protocol ? verbose(protocol, method, url) : verbose(method, url);
+  headers.size && verbose(formatHeaders(headers));
   body && verbose(body);
-  info();
+  verbose();
 }
 
 function formatResponse({ statusCode, statusText, headers, body }) {
-  info(statusCode, statusText);
-  headers.size && verbose(headers);
-  body && info();
+  verbose(statusCode, statusText);
+  headers.size && verbose(formatHeaders(headers));
+  body && verbose();
   body && quiet(body);
 }
 
