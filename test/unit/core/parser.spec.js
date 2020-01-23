@@ -24,13 +24,13 @@ describe('Curlf parser', () => {
     });
   });
 
-  it('should parse file with protocol, method and url', () => {
+  it('should parse file with version, method and url', () => {
     const result = parse(dedent `
       HTTP/1.1 GET https://foo.com
     `);
 
     expect(result).toMatchObject({
-      protocol: 'HTTP/1.1',
+      version: 'HTTP/1.1',
       method: 'GET',
       url: 'https://foo.com'
     });
@@ -116,13 +116,13 @@ describe('Curlf parser', () => {
     });
   });
 
-  it('should allow multiple spaces between protocol, method and url', () => {
+  it('should allow multiple spaces between version, method and url', () => {
     const result = parse(dedent `
       HTTP/1.1    GET      https://foo.com
     `);
 
     expect(result).toMatchObject({
-      protocol: 'HTTP/1.1',
+      version: 'HTTP/1.1',
       method: 'GET',
       url: 'https://foo.com'
     });

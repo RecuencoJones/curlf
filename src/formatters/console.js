@@ -4,7 +4,7 @@ const { fromMapToRawList } = require('../util/headers');
 const formatHeaders = (headers) => fromMapToRawList(headers).sort().join('\n');
 
 function init(flags) {
-  let logLevel = process.env.LOGLEVEL;
+  let logLevel = process.env.CURLF_LOGLEVEL;
 
   if (flags.verbose) {
     logLevel = 'VERBOSE';
@@ -13,8 +13,8 @@ function init(flags) {
   logLevel && setLevel(logLevel);
 }
 
-function formatRequest({ protocol, method, url, headers, body }) {
-  protocol ? verbose(protocol, method, url) : verbose(method, url);
+function formatRequest({ version, method, url, headers, body }) {
+  version ? verbose(version, method, url) : verbose(method, url);
   headers.size && verbose(formatHeaders(headers));
   body && verbose(body);
   verbose();

@@ -5,24 +5,36 @@ const { parse } = require('./core/parser');
 const { request } = require('./core/request');
 
 const flags = yargs
-  .option('i', {
-    alias: [ 'stdin' ],
+
+  // curlf options
+  .option('stdin', {
+    alias: [ 'in' ],
     desc: 'Read from stdin',
     type: 'boolean'
   })
-  .option('v', {
-    alias: [ 'verbose' ],
-    desc: 'Make the operation more talkative',
-    type: 'boolean'
+
+  // curl options
+  .option('insecure', {
+    alias: [ 'k' ],
+    desc: 'Allow insecure server connections when using SSL',
+    type: 'boolean',
+    default: false
   })
-  .option('L', {
-    alias: [ 'location' ],
+  .option('location', {
+    alias: [ 'L' ],
     desc: 'Follow location',
     type: 'boolean',
     default: false
   })
-  .group([ 'i' ], 'curlf own options:')
-  .group([ 'v', 'L' ], 'curl options:')
+  .option('verbose', {
+    alias: [ 'v' ],
+    desc: 'Make the operation more talkative',
+    type: 'boolean'
+  })
+  .group([ 'stdin' ], 'curlf own options:')
+  .group([ 'insecure', 'location', 'verbose' ], 'curl options:')
+  .alias('V', 'version')
+  .alias('h', 'help')
   .version()
   .help()
   .wrap(yargs.terminalWidth())

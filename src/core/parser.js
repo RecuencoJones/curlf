@@ -10,7 +10,7 @@ function parseFirstLine(line) {
   const [ $0, $1, $2 ] = line.replace(/\s+/g, ' ').split(' ');
 
   return $2
-    ? { protocol: $0, method: $1, url: $2 }
+    ? { version: $0, method: $1, url: $2 }
     : $1
       ? { method: $0, url: $1 }
       : { method: 'GET', url: $0 };
@@ -38,7 +38,7 @@ function parse(contents) {
     .trim()
     .split(HEADER_LINE_SEPARATOR);
 
-  const { protocol, method, url } = parseFirstLine(firstLine);
+  const { version, method, url } = parseFirstLine(firstLine);
 
   if (!url) {
     throw new Error('URL is mandatory!');
@@ -46,7 +46,7 @@ function parse(contents) {
 
   const headers = fromRawListToMap(rawHeaders);
 
-  return { protocol, method, url, headers, body };
+  return { version, method, url, headers, body };
 }
 
 module.exports = { parse };
