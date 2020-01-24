@@ -5,6 +5,13 @@ const { parse } = require('./core/parser');
 const { request } = require('./core/request');
 
 const flags = yargs
+  .command('$0 [<file>]', 'execute a request', (y) => {
+    y.positional('file', {
+      desc: 'curlf file to run',
+      type: 'string',
+      normalize: true
+    });
+  })
 
   // curlf options
   .option('stdin', {
@@ -46,7 +53,7 @@ const flags = yargs
   formatter.init(flags);
 
   try {
-    const contents = await (flags.stdin ? readInput() : readFile());
+    const contents = await (flags.stdin ? readInput(flags) : readFile(flags));
     const requestOptions = parse(contents);
 
     formatter.formatRequest(requestOptions);

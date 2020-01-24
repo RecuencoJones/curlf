@@ -8,16 +8,16 @@ script:
 - npm test
 
 # run samples
-- bin/curlf samples/pets-json.curlf -v
-- bin/curlf samples/pets-with-protocol.curlf -v
-- bin/curlf samples/pets.curlf -v
-- bin/curlf samples/requestbin.curl -v
-- bin/curlf samples/sample.curlf -v
-- bin/curlf samples/swapi.curlf -v
+- bin/curlf -v samples/pets-json.curlf
+- bin/curlf -v samples/pets-with-protocol.curlf
+- bin/curlf -v samples/pets.curlf
+- bin/curlf -v samples/requestbin.curl
+- bin/curlf -v samples/sample.curlf
+- bin/curlf -v samples/swapi.curlf
 
 # test input from stdin
 - |
-    bin/curlf --in <<EOF
+    bin/curlf -v --in <<EOF
     GET https://www.zaragoza.es/sede/servicio/mascotas
     Accept: application/json
     EOF

@@ -1,7 +1,8 @@
 # 1.0.0-alpha.3
 
+- Add yargs positional argument documentation.
+- Add samples as tests to travis script.
 - Remove dangling constant for matching environment variables.
-- Added samples as tests to travis script.
 
 # 1.0.0-alpha.2
 

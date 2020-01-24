@@ -18,9 +18,7 @@ async function readInput() {
   });
 }
 
-async function readFile() {
-  const [ file ] = process.argv.slice(2);
-
+async function readFile({ file }) {
   return readFileSync(resolve(file), 'utf8');
 }
 
