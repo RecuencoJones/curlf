@@ -1,0 +1,11 @@
+# 1.0.0-alpha.2
+
+- Use `envsub` parser to replace environment variables.
+- Update logging of response body to match curl output.
+- Change `protocol` to more proper word `version`.
+- Add requestbin sample.
+- Add license and further metadata to `package.json`.
+
+# 1.0.0-alpha.1
+
+- Initial version of `curlf`.

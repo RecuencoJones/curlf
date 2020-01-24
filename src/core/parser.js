@@ -1,3 +1,4 @@
+const envsub = require('envsub/js/envsub-parser');
 const { fromRawListToMap } = require('../util/headers');
 
 const HEADER_LINE_SEPARATOR = '\n';
@@ -27,11 +28,16 @@ function splitHeadAndBody(content) {
   };
 }
 
-function parse(contents) {
-  const contentsResolved = contents
-    .trim()
-    .replace(VARIABLE_MATCHER, (_, $1) => process.env[$1]);
+function replaceVariables(content) {
+  return envsub(content, {
+    options: {
+      syntax: 'dollar-both'
+    }
+  });
+}
 
+function parse(contents) {
+  const contentsResolved = replaceVariables(contents.trim());
   const { head, body } = splitHeadAndBody(contentsResolved);
 
   const [ firstLine, ...rawHeaders ] = head

@@ -1,23 +1,40 @@
 {
   "name": "curlf",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
+  "license": "MIT",
+  "description": "File based, persistent and aesthetically pleasing HTTP requests! Just like curl, but with file templates",
+  "repository": "github:RecuencoJones/curlf",
+  "bugs": {
+    "url": "https://github.com/RecuencoJones/curlf/issues"
+  },
+  "author": "David Recuenco <david.recuencogadea@gmail.com> (https://recuen.co/)",
   "bin": "./bin/curlf",
+  "engines": {
+    "node": ">= 12"
+  },
   "scripts": {
     "lint": "eslint .",
     "test": "jest"
   },
   "dependencies": {
+    "envsub": "4.0.7",
     "http-status-codes": "1.4.0",
     "node-libcurl": "2.0.3",
     "yargs": "15.1.0"
+  },
+  "devDependencies": {
+    "build-tools-javascript": "1.2.0",
+    "dedent": "0.7.0",
+    "jest": "25.1.0"
   },
   "files": [
     "src",
     "bin"
   ],
-  "devDependencies": {
-    "build-tools-javascript": "1.2.0",
-    "dedent": "0.7.0",
-    "jest": "25.1.0"
-  }
+  "keywords": [
+    "curl",
+    "http",
+    "request",
+    "env"
+  ]
 }
