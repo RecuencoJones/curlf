@@ -14,17 +14,17 @@ function init(flags) {
 }
 
 function formatRequest({ version, method, url, headers, body }) {
-  version ? verbose(version, method, url) : verbose(method, url);
+  verbose([ version, method, url ].filter(Boolean).join(' '));
   headers.size && verbose(formatHeaders(headers));
   body && verbose(body);
   verbose();
 }
 
 function formatResponse({ statusCode, statusText, headers, body }) {
-  verbose(statusCode, statusText);
+  verbose(`${ statusCode } ${ statusText }`);
   headers.size && verbose(formatHeaders(headers));
   body && verbose();
-  body && quiet(body);
+  body && quiet(body, { skipNewLine: true });
 }
 
 function formatError({ message }) {

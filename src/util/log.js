@@ -20,16 +20,22 @@ function setLevel(level) {
   currentLevel = levels[`${ level }`.toUpperCase()] || DEFAULT_LEVEL;
 }
 
-function log(level, ...args) {
-  level <= currentLevel && console.log(...args);
+function log(level, message, { skipNewLine } = {}) {
+  let _message = message || '';
+
+  if (!skipNewLine) {
+    _message += '\n';
+  }
+
+  level <= currentLevel && process.stdout.write(_message);
 }
 
-const verbose = (...args) => log(levels.VERBOSE, ...args);
+const verbose = (message, opts) => log(levels.VERBOSE, message, opts);
 
-const info = (...args) => log(levels.INFO, ...args);
+const info = (message, opts) => log(levels.INFO, message, opts);
 
-const quiet = (...args) => log(levels.QUIET, ...args);
+const quiet = (message, opts) => log(levels.QUIET, message, opts);
 
-const error = (...args) => log(levels.NONE, ...args);
+const error = (message, opts) => log(levels.NONE, message, opts);
 
 module.exports = { levels, setLevel, verbose, info, quiet, error };
