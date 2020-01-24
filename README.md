@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/RecuencoJones/curlf.svg?branch=master)](https://travis-ci.com/RecuencoJones/curlf)
+
 # Curlf
 
 File based, persistent and aesthetically pleasing HTTP requests!

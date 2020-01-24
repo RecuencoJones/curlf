@@ -6,3 +6,18 @@ node_js:
 script:
 - npm run lint
 - npm test
+
+# run samples
+- bin/curlf samples/pets-json.curlf -v
+- bin/curlf samples/pets-with-protocol.curlf -v
+- bin/curlf samples/pets.curlf -v
+- bin/curlf samples/requestbin.curl -v
+- bin/curlf samples/sample.curlf -v
+- bin/curlf samples/swapi.curlf -v
+
+# test input from stdin
+- |
+    bin/curlf --in <<EOF
+    GET https://www.zaragoza.es/sede/servicio/mascotas
+    Accept: application/json
+    EOF

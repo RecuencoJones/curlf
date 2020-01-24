@@ -5,7 +5,6 @@ const HEADER_LINE_SEPARATOR = '\n';
 const BODY_SEPARATOR = '\n{2,}';
 const HEAD_MATCHER = new RegExp(`(.*?)${ BODY_SEPARATOR }`, 's');
 const BODY_MATCHER = new RegExp(`${ BODY_SEPARATOR }(.*)`, 's');
-const VARIABLE_MATCHER = /\$([a-zA-Z0-9_]+)/gm;
 
 function parseFirstLine(line) {
   const [ $0, $1, $2 ] = line.replace(/\s+/g, ' ').split(' ');

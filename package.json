@@ -1,6 +1,6 @@
 {
   "name": "curlf",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.3",
   "license": "MIT",
   "description": "File based, persistent and aesthetically pleasing HTTP requests! Just like curl, but with file templates",
   "repository": "github:RecuencoJones/curlf",

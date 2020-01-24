@@ -1,3 +1,8 @@
+# 1.0.0-alpha.3
+
+- Remove dangling constant for matching environment variables.
+- Added samples as tests to travis script.
+
 # 1.0.0-alpha.2
 
 - Use `envsub` parser to replace environment variables.
