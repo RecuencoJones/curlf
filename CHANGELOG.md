@@ -1,3 +1,7 @@
+# 1.0.0-alpha.4
+
+- Fix vulnerabilities by `npm audit`.
+
 # 1.0.0-alpha.3
 
 - Add yargs positional argument documentation.

@@ -20,7 +20,7 @@
     "envsub": "4.0.7",
     "http-status-codes": "1.4.0",
     "node-libcurl": "2.0.3",
-    "yargs": "15.1.0"
+    "yargs": "15.4.1"
   },
   "devDependencies": {
     "build-tools-javascript": "1.2.0",

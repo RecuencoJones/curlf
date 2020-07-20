@@ -71,6 +71,12 @@ It can also be set through env variable `CURLF_LOGLEVEL`, which can take any of 
 - `ERROR`, `1`: Log errors only
 - `SILENT`, `0`: Log nothing ¯\\\_(ツ)\_/¯
 
+## Run travis `script` on bash
+
+```
+yq read .travis.yml 'script[*]' | bash
+```
+
 ## Todo
 
 - Support for further curl flags
